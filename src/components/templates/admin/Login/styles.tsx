@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import {TextInput} from "@atoms/index";
 
 export const Title = styled.h1`
   font-size: 30px;
@@ -22,6 +23,9 @@ export const SubmitBtn = styled.button`
   background-color: #3187ed;
   border-radius: 12px;
 `;
+export const Input = styled(TextInput)`
+  margin-top: 20px;
+`
 export const RegisterLink = styled.div`
   font-size: 15px;
   font-weight: 600;

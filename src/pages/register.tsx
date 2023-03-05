@@ -1,4 +1,4 @@
-import RegisterTemplate from "@templates/Register";
+import RegisterTemplate from "@templates/user/Register";
 
 export default function Register() {
     return (

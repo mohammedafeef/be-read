@@ -1,22 +1,20 @@
 import * as S from "./styles";
-import {Button, TextInput} from "@atoms/index";
+import {Button} from "@atoms/index";
 import {AuthLayout} from "@organisms/index";
 
 export const LoginTemplate = () => {
     return (
         <AuthLayout>
             <S.Title>Login</S.Title>
-            <TextInput
+            <S.Input
                 label="Email"
                 type="email"
                 name="email"
-                sx={{mt:2}}
             />
-            <TextInput
+            <S.Input
                 label="Password"
                 type="password"
                 name="password"
-                sx={{mt:2}}
             />
 
             <Button>Login</Button>
