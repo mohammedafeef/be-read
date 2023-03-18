@@ -5,6 +5,10 @@ export function Navbar() {
     return (
         <S.Root>
             <S.AppLogo src="/appLogo.png"/>
+            <S.SearchContainer>
+                <S.SearchInput placeholder="Search for books"/>
+                <S.SearchButton><S.SearchIcon/></S.SearchButton>
+            </S.SearchContainer>
             <S.AccountActionWrapper>
                 <Badge
                     color="primary"

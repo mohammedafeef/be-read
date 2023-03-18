@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 export const Root = styled.div`
   position: fixed;
@@ -20,6 +21,41 @@ export const AppLogo = styled.img`
   height: 40px;
   width: 80px;
 `;
+export const SearchContainer = styled.div`
+  display: flex;
+  background-color: rgba(5, 5, 5, .05);
+  border-radius: 10px;
+  
+`
+export const SearchInput = styled.input`
+  outline: none;
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  font-size: 15px;
+  color: black;
+  background-color: transparent;
+
+  :focus {
+    outline: none;
+  }
+`
+export const SearchButton = styled.button`
+  cursor: pointer;
+  background-color: #3187ed;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  transition: transform 0.1s ease-in-out;
+
+  :hover {
+    transform: scale(1.05);
+  }
+`
+export const SearchIcon = styled(SearchOutlinedIcon)`
+  color: white;
+  font-size: 23px !important;
+`
 export const AccountActionWrapper = styled.div`
   display: flex;
   align-items: center;
