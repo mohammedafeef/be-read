@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {HTMLProps} from "react";
 
-export const SubmitBtn = styled.button`
+export const Btn = styled.button`
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -19,8 +19,8 @@ export const SubmitBtn = styled.button`
 type Props = HTMLProps<HTMLButtonElement>;
 export default function Button (props: Props){
     return (
-        <SubmitBtn>
+        <Btn>
             {props.children}
-        </SubmitBtn>
+        </Btn>
     )
 }
