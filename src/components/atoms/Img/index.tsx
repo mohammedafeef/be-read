@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 type Props = HTMLAttributes<HTMLImageElement> & {
     src?: string;
+    alt?: string;
 };
 
 const Component = styled.img`

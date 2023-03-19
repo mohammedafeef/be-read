@@ -7,7 +7,7 @@ interface Props {
     image: string;
 }
 
-export function BookCard(props: Props) {
+export function BookListCard(props: Props) {
     return (
         <S.Root>
             <S.ImageWrapper>
