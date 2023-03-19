@@ -6,6 +6,7 @@ import {BookCard} from "@molecules/user/BookCard";
 export const BooksTemplate = () => {
     return (
         <Layout>
+            <S.Title>Books List</S.Title>
             <BooksFilter/>
             <S.BooksList>
                 <BookCard
