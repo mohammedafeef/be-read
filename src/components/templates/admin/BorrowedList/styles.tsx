@@ -6,9 +6,9 @@ export const Root = styled.div`
 export const ReaderInfoContainer = styled.div`
   width: 200px;
   height: fit-content;
-  background: rgba(10, 10, 10, 0.05);
   border: .3px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  background: rgba(10, 10, 10, 0.05);
   padding: 15px;
   gap: 10px;
   display: flex;

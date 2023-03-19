@@ -1,6 +1,6 @@
 import {BorrowedListTemplate} from "@templates/user/BorrowedList";
 
-export default function Borrow() {
+export default function Index() {
     return (
         <BorrowedListTemplate/>
     )
