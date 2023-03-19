@@ -6,7 +6,10 @@ import {BookCard} from "@molecules/user/BookCard";
 export const BooksTemplate = () => {
     return (
         <Layout>
-            <S.Title>Books List</S.Title>
+            <S.HeaderWrapper>
+                <S.Title>Books List</S.Title>
+                <S.CreateBookButton>Add Book</S.CreateBookButton>
+            </S.HeaderWrapper>
             <BooksFilter/>
             <S.BooksList>
                 <BookCard

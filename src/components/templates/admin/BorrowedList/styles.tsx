@@ -56,6 +56,25 @@ export const SearchBar = styled.input`
     outline: none;
   }
 `
+export const HeaderWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+`
+export const createBorrowButton = styled.button`
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  background-color: #3187ed;
+  border-radius: 8px;
+  transition: transform 0.1s ease-in-out;
+
+  :hover {
+    transform: scale(1.03);
+  }
+`
 
 export const BorrowedBooksList = styled.div`
   display: flex;

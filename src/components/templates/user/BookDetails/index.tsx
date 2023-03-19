@@ -1,6 +1,6 @@
 import * as S from "./styles";
 import {Img, Tag} from "@atoms/index";
-import Layout from "@organisms/user/Layout";
+import Layout from "@organisms/admin/Layout";
 
 export default function BookDetailsTemplate() {
     return (

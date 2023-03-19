@@ -6,7 +6,10 @@ import {BorrowFilter} from "@organisms/admin/BorrowFilter";
 export const BorrowedListTemplate = () => {
     return (
         <Layout>
-            <S.Title>Borrowed Books</S.Title>
+            <S.HeaderWrapper>
+                <S.Title>Borrowed Books</S.Title>
+                <S.createBorrowButton>Issue Book</S.createBorrowButton>
+            </S.HeaderWrapper>
             <S.Root>
                 <S.BorrowContainer>
                     <BorrowFilter/>
