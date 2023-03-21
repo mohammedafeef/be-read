@@ -19,6 +19,7 @@ export const CreateBookButton = styled.button`
   border: none;
   background-color: #3187ed;
   border-radius: 8px;
+  height: fit-content;
   transition: transform 0.1s ease-in-out;
 
   :hover {

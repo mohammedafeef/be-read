@@ -26,19 +26,27 @@ export const BooksListIcon = styled(LowPriorityIcon)`
   color: black;
   cursor: pointer;
   transition: transform 0.1s ease-in-out;
-
-  :hover {
-    transform: scale(1.1);
-  }
+  
 `
 export const AccountActionWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap:10px;
 `;
+export const ActionButton = styled.button`
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background:none;
+`
 export const LogoutButton = styled.button`
   cursor: pointer;
   padding: 10px 20px;
-  margin-left: 80px;
   font-size: 15px;
   font-weight: 700;
   color: white;
