@@ -18,13 +18,10 @@ export const AddBookTemplate = () => {
                     <TextInput label="Publisher" select fullWidth/>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextInput label="Genore" select fullWidth/>
+                    <TextInput label="Genre" select fullWidth/>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextInput label="Language" fullWidth/>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <TextInput label="Type" select fullWidth/>
                 </Grid>
                 <Grid item xs={12}>
                     <TextInput label="Summary" multiline rows={4} fullWidth/>
