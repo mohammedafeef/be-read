@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {HTMLProps} from "react";
+import {ButtonHTMLAttributes} from "react";
 
 export const Btn = styled.button`
   cursor: pointer;
@@ -16,11 +16,9 @@ export const Btn = styled.button`
   border-radius: 12px;
 `;
 
-type Props = HTMLProps<HTMLButtonElement>;
+type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 export default function Button (props: Props){
     return (
-        <Btn>
-            {props.children}
-        </Btn>
+        <Btn {...props}/>
     )
 }

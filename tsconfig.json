@@ -37,7 +37,10 @@
       ],
       "@templates/*": [
         "./src/components/templates/*"
-      ]
+      ],
+      "@customTypes/*": [
+        "./src/types/*"
+      ],
     }
   },
   "include": [
