@@ -6,7 +6,7 @@
 .pnp.js
 
 # service file
-/service-account.json
+/service-account.ts
 
 # testing
 /coverage

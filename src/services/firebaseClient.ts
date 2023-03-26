@@ -1,14 +1,9 @@
-import {
-    initializeApp,
-    cert,
-} from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import { getStorage } from 'firebase-admin/storage';
-const options = {
-    storageBucket: `gs://${process.env.NEXT_PUBLIC_BUCKET_NAME}.appspot.com`,
-    credential: cert(process.env.NEXT_PUBLIC_SERVICE_ACCOUNT_PATH as string)
-};
-initializeApp(options);
-const db = getFirestore();
-const bucket = getStorage().bucket();
-module.exports = { db, bucket };
+import { initializeApp } from "firebase/app";
+import {firebaseConfig} from "../../service-account";
+import {getFirestore} from "@firebase/firestore";
+import firebase from "firebase/compat";
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const storage = firebase.storage().ref();
+export const auth = firebase.auth();
