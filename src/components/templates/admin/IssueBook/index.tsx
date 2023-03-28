@@ -2,6 +2,7 @@ import * as S from "./styles";
 import Layout from "@organisms/admin/Layout";
 import {Grid} from "@mui/material";
 import {Button, TextInput} from "@atoms/index";
+import DateInput from "@molecules/DateInput";
 
 export const IssueBookTemplate = () => {
     return (
@@ -15,10 +16,10 @@ export const IssueBookTemplate = () => {
                     <TextInput label="Student" select fullWidth/>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextInput label="Date of Issuing" select fullWidth/>
+                    <DateInput label="Date of Issuing" fullWidth/>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextInput label="Date of return" select fullWidth/>
+                    <DateInput label="Date of return" fullWidth/>
                 </Grid>
                 <Grid item xs={12}>
                     <TextInput label="Remark" multiline rows={4} fullWidth/>
