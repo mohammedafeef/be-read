@@ -1,25 +1,62 @@
 import * as Yup from 'yup';
 import {useFormik} from "formik";
-import {useMutation} from "react-query";
-import {login} from "@app/services/authService";
+import {useMutation, useQuery} from "react-query";
 import toast from "react-hot-toast";
-import {getUser} from "@app/services/userService";
-import {UserLoginProps} from "@app/types/UserLoginProps";
 import useAdminRouter from "@app/lib/route-manager/admin-routes";
+import {
+    createBook,
+    getAuthors,
+    getGenres,
+    getLanguages,
+    getPublishers,
+    uploadBookImage
+} from "@app/services/bookService";
+import {BookCreationProps} from "@app/types/BookCreationProps";
+import {OptionsList} from "@app/types/OptionsList";
+import {Option} from "@app/types/Option";
+import {getDownloadURL} from "@firebase/storage";
+
 
 export const useForm = () => {
     const router = useAdminRouter();
 
-    const addBookMutation = useMutation(
-        async (value: UserLoginProps) => {
-            const authRef = await login(value.email, value.password);
-            const userRef = await getUser(authRef.user.uid);
-            console.log(userRef.data());
-            if (userRef.data()?.role === 'admin') {
-                return true;
+    const {data} = useQuery({
+        queryKey: ['options'],
+        queryFn: async (): Promise<OptionsList> => {
+            const langauges = await getLanguages();
+            const genres = await getGenres();
+            const publishers = await getPublishers();
+            const authors = await getAuthors();
+            const options: OptionsList = {
+                languages: [],
+                genres: [],
+                publishers: [],
+                authors: []
             }
-            throw new Error('Invalid email or password');
+            langauges.forEach((doc) => {
+                options.languages = [...options.languages as Option[], doc.data() as Option]
+            });
+            genres.forEach((doc) => {
+                options.genres = [...options.genres as Option[], doc.data() as Option]
+            });
+            publishers.forEach((doc) => {
+                options.publishers = [...options.publishers as Option[], doc.data() as Option]
+            });
+            authors.forEach((doc) => {
+                options.authors = [...options.authors as Option[], doc.data() as Option]
+            })
+            return options;
 
+        },
+        onError: (error: any) => console.error("happened man", error)
+
+    });
+
+    const addBookMutation = useMutation(
+        async (value: BookCreationProps) => {
+            const imageRef = await uploadBookImage(value.image as File);
+            value.image = await getDownloadURL(imageRef.ref);
+            await createBook(value);
         },
         {
             onSuccess: async () => {
@@ -31,7 +68,7 @@ export const useForm = () => {
             }
         },
     );
-    const handleSubmit = (values: UserLoginProps) => {
+    const handleSubmit = (values: BookCreationProps) => {
         addBookMutation.mutate(values)
     }
     const validationSchema = Yup.object({
@@ -41,6 +78,7 @@ export const useForm = () => {
         genre: Yup.string().required('Genre is required'),
         publisher: Yup.string().required('Publisher is required'),
         language: Yup.string().required('Language is required'),
+        summary: Yup.string().required('Summary is required'),
         image: Yup
             .mixed()
             .required("Image is required"),
@@ -48,16 +86,22 @@ export const useForm = () => {
 
     const form = useFormik({
         initialValues: {
-            email: '',
-            password: '',
+            name: '',
+            summary: '',
+            author: '',
+            publisher: '',
+            language: '',
+            genre: '',
+            image: '',
         },
         validationSchema: validationSchema,
         onSubmit: handleSubmit,
-        validateOnChange: false,
-        validateOnBlur: false,
     });
 
     return {
-        form
+        form,
+        state: {
+            options: data
+        }
     }
 }

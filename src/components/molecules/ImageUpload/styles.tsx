@@ -4,6 +4,13 @@ export const Input = styled.input`
 
 `;
 
+export const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export const UploadStack = styled.label`
   flex: 1;
   height: 350px;
@@ -18,12 +25,14 @@ export const UploadStack = styled.label`
 export const UploadWrapper = styled.div`
   box-sizing: border-box;
   //position: absolute;
-  margin-left: 87px;
   width: 200px;
   height: 300px;
   overflow: hidden;
   margin-top: 32px;
-  background: rgba(0,0,0,.1);
+  background: rgba(0, 0, 0, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.default {
     border: 1px solid #B7B7B7;
@@ -34,17 +43,11 @@ export const UploadWrapper = styled.div`
   }
 `;
 
-export const Center = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
 
 export const CardImage = styled.img`
-  width: 60px;
-  height: 90px;
+  width: 190px;
+  height: 290px;
   object-fit: contain;
-  margin-top: 15px;
   filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.5));
 `;
 export const MarginBottom = styled.div `
