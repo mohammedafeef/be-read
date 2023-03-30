@@ -1,12 +1,17 @@
 import * as React from 'react';
-import {LocalizationProvider} from '@mui/x-date-pickers';
+import {DateValidationError, LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
-import {TextField} from "@mui/material";
+import {PickerChangeHandler} from "@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue";
 
 interface Props {
     label: string;
     fullWidth?: boolean;
+    onChange?: PickerChangeHandler<string | null, DateValidationError> | undefined;
+    onBlur?: Function;
+    helperText?: string;
+    error?: boolean;
+    value?: string;
 }
 
 export default function DateInput(props: Props) {
@@ -17,10 +22,13 @@ export default function DateInput(props: Props) {
                 slotProps={{
                     textField: {
                         fullWidth: props.fullWidth,
+                        helperText: props.helperText,
+                        error: props.error,
                         size: 'small',
                     },
                 }}
-                {...props}
+                onChange={props.onChange}
+                value={props.value}
             />
         </LocalizationProvider>
     );

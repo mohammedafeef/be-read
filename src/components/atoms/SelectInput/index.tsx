@@ -13,7 +13,7 @@ export default function SelectInput(props: Props) {
         >
             {
                 props.options?.map((option, index) => (
-                    <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
+                    <MenuItem key={index} value={option.value}>{option.label}</MenuItem>
                 ))
             }
 

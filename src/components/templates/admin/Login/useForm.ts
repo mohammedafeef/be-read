@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import {useMutation} from "react-query";
 import {login} from "@app/services/authService";
 import toast from "react-hot-toast";
-import {getUser} from "@app/services/userService";
+import { getUserById} from "@app/services/userService";
 import {UserLoginProps} from "@app/types/UserLoginProps";
 import useAdminRouter from "@app/lib/route-manager/admin-routes";
 
@@ -13,8 +13,7 @@ export const useForm = () => {
     const loginMutation = useMutation(
         async (value: UserLoginProps) => {
             const authRef = await login(value.email, value.password);
-            const userRef = await getUser(authRef.user.uid);
-            console.log(userRef.data());
+            const userRef = await getUserById(authRef.user.uid);
             if (userRef.data()?.role === 'admin') {
                 return true;
             }
@@ -26,7 +25,7 @@ export const useForm = () => {
                 toast.success('Logged in successfully');
                 router.home().navigate();
             },
-            onError: (error: any) => {
+            onError: () => {
                 toast.error("Invalid email or password");
             }
         },

@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import {useMutation} from "react-query";
 import {login} from "@app/services/authService";
 import toast from "react-hot-toast";
-import { getUser} from "@app/services/userService";
+import {getUserById} from "@app/services/userService";
 import useUserRouter from "@app/lib/route-manager/user-routes";
 import {UserLoginProps} from "@app/types/UserLoginProps";
 
@@ -13,16 +13,14 @@ export const useForm = () => {
     const userLoginMutation = useMutation(
         async (value: UserLoginProps) => {
             const authRef = await login(value.email, value.password);
-            const userRef = await getUser(authRef.user.uid);
-            console.log(userRef.data());
-
+            await getUserById(authRef.user.uid);
         },
         {
             onSuccess: async () => {
                 toast.success('Logged in successfully');
                 router.home().navigate();
             },
-            onError: (error: any) => {
+            onError: () => {
                 toast.error("Invalid email or password");
             }
         },

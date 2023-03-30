@@ -34,16 +34,28 @@ export const useForm = () => {
                 authors: []
             }
             langauges.forEach((doc) => {
-                options.languages = [...options.languages as Option[], doc.data() as Option]
+                options.languages = [...options.languages as Option[], {
+                    value: doc.data().value,
+                    label: doc.data().value
+                } as Option]
             });
             genres.forEach((doc) => {
-                options.genres = [...options.genres as Option[], doc.data() as Option]
+                options.genres = [...options.genres as Option[], {
+                    value: doc.data().value,
+                    label: doc.data().value
+                } as Option]
             });
             publishers.forEach((doc) => {
-                options.publishers = [...options.publishers as Option[], doc.data() as Option]
+                options.publishers = [...options.publishers as Option[], {
+                    value: doc.data().value,
+                    label: doc.data().value
+                } as Option]
             });
             authors.forEach((doc) => {
-                options.authors = [...options.authors as Option[], doc.data() as Option]
+                options.authors = [...options.authors as Option[], {
+                    value: doc.data().value,
+                    label: doc.data().value
+                } as Option]
             })
             return options;
 
@@ -63,7 +75,7 @@ export const useForm = () => {
                 toast.success('Book added successfully');
                 router.home().navigate();
             },
-            onError: (error: any) => {
+            onError: () => {
                 toast.error("Something went wrong, please try again");
             }
         },
