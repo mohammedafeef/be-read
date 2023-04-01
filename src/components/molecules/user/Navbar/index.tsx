@@ -15,6 +15,7 @@ export function Navbar() {
     }
 
     const handleLogout = () => {
+        localStorage.removeItem("user-auth");
         router.login().navigate();
         toast.success("Logout successfully");
     }

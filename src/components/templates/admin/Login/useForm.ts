@@ -3,18 +3,25 @@ import {useFormik} from "formik";
 import {useMutation} from "react-query";
 import {login} from "@app/services/authService";
 import toast from "react-hot-toast";
-import { getUserById} from "@app/services/userService";
+import {getUserById} from "@app/services/userService";
 import {UserLoginProps} from "@app/types/UserLoginProps";
 import useAdminRouter from "@app/lib/route-manager/admin-routes";
+import {useEffect} from "react";
 
 export const useForm = () => {
     const router = useAdminRouter();
 
+    useEffect(() => {
+        if (localStorage.getItem("admin-auth")) {
+            router.home().navigate();
+        }
+    }, []);
     const loginMutation = useMutation(
         async (value: UserLoginProps) => {
             const authRef = await login(value.email, value.password);
             const userRef = await getUserById(authRef.user.uid);
             if (userRef.data()?.role === 'admin') {
+                localStorage.setItem('admin-auth', authRef.user.uid);
                 return true;
             }
             throw new Error('Invalid email or password');

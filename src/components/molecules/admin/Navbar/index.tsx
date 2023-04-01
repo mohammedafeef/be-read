@@ -7,8 +7,10 @@ import toast from "react-hot-toast";
 export function Navbar() {
     const router = useAdminRouter();
     const handleLogout = () => {
-        toast.success("Logged out successfully");
+        localStorage.removeItem("admin-auth");
         router.login().navigate();
+        toast.success("Logged out successfully");
+
     }
     return (
         <S.Root>

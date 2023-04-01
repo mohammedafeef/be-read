@@ -1,41 +1,33 @@
 import Layout from "@organisms/user/Layout";
 import * as S from "./styles";
-import {TextInput} from "@atoms/index";
 import {BorrowCard} from "@molecules/user/BorrowCard";
+import {useBorrow} from "@templates/admin/BorrowedList/useBorrow";
+import useUserRouter from "@app/lib/route-manager/user-routes";
 
 export const BorrowedListTemplate = () => {
+    const {values, mutation} = useBorrow();
     return (
         <Layout>
             <S.Root>
                 <S.BorrowContainer>
                     <S.FilterWrapper>
-                        <S.SearchBar placeholder="Book name"/>
-                        <TextInput select label="status" size="small" sx={{minWidth: 100}}/>
+                        <S.SearchBar placeholder="Book name" value={values.states.keyword}
+                                     onChange={mutation.handleKeywordChange}/>
+                        {/*<TextInput select label="status" size="small" sx={{minWidth: 100}}/>*/}
                     </S.FilterWrapper>
                     <S.Title>Borrowed Books</S.Title>
                     <S.BorrowedBooksList>
-                        <BorrowCard
-                            title="Alchemist"
-                            author="Paulo Coelho"
-                            image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                            status="Due soon"
-                        />
-                        <BorrowCard
-                            title="Alchemist"
-                            author="Paulo Coelho"
-                            image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                            status="Due soon"
-                        /><BorrowCard
-                        title="Alchemist"
-                        author="Paulo Coelho"
-                        image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                        status="Due soon"
-                    /><BorrowCard
-                        title="Alchemist"
-                        author="Paulo Coelho"
-                        image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                        status="Due soon"
-                    />
+                        {
+                            values?.issuedBooks?.map((borrow, index) => (
+                                <BorrowCard
+                                    key={index}
+                                    title={borrow.book.name}
+                                    author={borrow.book.author}
+                                    image={borrow.book.image}
+                                    status="Due soon"
+                                />
+                            ))
+                        }
                     </S.BorrowedBooksList>
                 </S.BorrowContainer>
                 <S.ReaderInfoContainer>

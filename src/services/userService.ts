@@ -1,10 +1,9 @@
 import {collections} from "@app/constansts/firebaseKeys";
 import {db} from "@app/services/firebaseClient";
-import {addDoc, collection, doc, getDoc, getDocs} from "@firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc} from "@firebase/firestore";
 
 export const createUser = async (id: string, fullname: string, email: string, username: string, phone: string) => {
-    return addDoc(collection(db, collections.users), {
-        id,
+    return setDoc(doc(db, collections.users, id), {
         fullname,
         email,
         username,

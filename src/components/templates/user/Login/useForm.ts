@@ -6,14 +6,26 @@ import toast from "react-hot-toast";
 import {getUserById} from "@app/services/userService";
 import useUserRouter from "@app/lib/route-manager/user-routes";
 import {UserLoginProps} from "@app/types/UserLoginProps";
+import {useEffect} from "react";
 
 export const useForm = () => {
     const router = useUserRouter();
 
+    useEffect(() => {
+        if (localStorage.getItem("user-auth")) {
+            router.home().navigate();
+        }
+    }, []);
+
     const userLoginMutation = useMutation(
         async (value: UserLoginProps) => {
             const authRef = await login(value.email, value.password);
-            await getUserById(authRef.user.uid);
+            const userRef = await getUserById(authRef.user.uid);
+            if (userRef.data()?.role === 'user') {
+                localStorage.setItem('user-auth', authRef.user.uid);
+                return true;
+            }
+            throw new Error('Invalid email or password');
         },
         {
             onSuccess: async () => {
