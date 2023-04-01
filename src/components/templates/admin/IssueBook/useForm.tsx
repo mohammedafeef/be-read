@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import useAdminRouter from "@app/lib/route-manager/admin-routes";
 import {
     getBookById,
-    getBooks,
+    getBooks, updateBookStatus,
 } from "@app/services/bookService";
 import {Option} from "@app/types/Option";
 import {IssueBookOptions} from "@app/types/IssueBookOptions";
@@ -27,18 +27,20 @@ export const useForm = () => {
                 books: []
             }
             books.forEach((doc) => {
-                options.books = [...options.books as Option[], {
-                    value: doc.id,
-                    label: doc.data().name,
-                }]
+                if (doc.data().isAvailable) {
+                    options.books = [...options.books as Option[], {
+                        value: doc.id,
+                        label: doc.data().name,
+                    }]
+                }
             });
             users.forEach((doc) => {
                 options.users = [...options.users as Option[], {
                     label: doc.data().fullname, value: doc.id
                 }]
             });
-            return options;
 
+            return options;
         },
         onError: (error: any) => console.error(error)
 
@@ -48,12 +50,16 @@ export const useForm = () => {
         async (value: IssueBookProps) => {
             const student = await getUserById(value.student);
             const book = await getBookById(value.book);
+            const returnDate = new Date(value.returnDate);
+            const issuedDate = new Date(value.issuedDate);
 
-            if (book.data() || student.data())
+            if (!book.data() || !student.data())
                 throw Error("NOT EXISTS");
 
             const requestData = {
                 ...value,
+                returnDate: returnDate.getTime(),
+                issuedDate: issuedDate.getTime(),
                 book: {
                     ...book.data(),
                     id: value.book,
@@ -65,6 +71,8 @@ export const useForm = () => {
             };
 
             await createNewRequest(requestData);
+            await updateBookStatus(value.book);
+
         },
         {
             onSuccess: async () => {

@@ -6,4 +6,5 @@ export const collections = {
     bookGenres: "bookGenres",
     bookAuthors: "bookAuthors",
     bookPublishers: "bookPublishers",
+
 }

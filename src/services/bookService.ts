@@ -1,6 +1,6 @@
 import {ref, uploadBytes} from "@firebase/storage";
 import {db, storage} from "@app/services/firebaseClient";
-import {addDoc, collection, doc, getDoc, getDocs} from "@firebase/firestore";
+import {addDoc, collection, doc, getDoc, getDocs, updateDoc} from "@firebase/firestore";
 import {collections} from "@app/constansts/firebaseKeys";
 import {BookCreationProps} from "@app/types/BookCreationProps";
 
@@ -33,4 +33,10 @@ export const createBook = async (data: BookCreationProps) => {
 export const uploadBookImage = async (image: File) => {
     const storageRef = ref(storage, `books/${image.name}`);
     return uploadBytes(storageRef, image);
+}
+
+export const updateBookStatus = async (id: string) => {
+    return updateDoc(doc(db, collections.books, id), {
+        isAvailable: false
+    });
 }

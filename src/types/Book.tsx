@@ -4,6 +4,8 @@ export interface Book {
     summary: string;
     author: string;
     publisher: string;
+    language: string;
     genre: string;
     image: string;
+    isAvailable: boolean;
 }

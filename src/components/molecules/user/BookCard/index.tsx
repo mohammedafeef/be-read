@@ -3,6 +3,7 @@ import Img from "@atoms/Img";
 import {StatusLabel} from "@atoms/index";
 
 interface Props {
+    id: string;
     title: string;
     author: string;
     image: string;

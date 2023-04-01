@@ -34,7 +34,7 @@ export const IssueBookTemplate = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <DateInput label="Date of Issuing" fullWidth
-                               onChange={form.handleChange}
+                               onChange={(value) => form.setFieldValue("issuedDate", value)}
                                onBlur={form.handleBlur}
                                value={form.values.issuedDate}
                                error={form.touched.issuedDate && Boolean(form.errors.issuedDate)}
@@ -43,15 +43,14 @@ export const IssueBookTemplate = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <DateInput label="Date of return" fullWidth
-                               onChange={form.handleChange}
-                               onBlur={form.handleBlur}
+                               onChange={(value) => form.setFieldValue("returnDate", value)}
                                value={form.values.returnDate}
                                error={form.touched.returnDate && Boolean(form.errors.returnDate)}
                                helperText={(form.touched.returnDate && form.errors.returnDate) as string}
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextInput label="Remark" multiline rows={4} fullWidth
+                    <TextInput name="remark" label="Remark" multiline rows={4} fullWidth
                                onChange={form.handleChange}
                                onBlur={form.handleBlur}
                                value={form.values.remark}

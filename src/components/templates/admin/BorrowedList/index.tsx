@@ -2,8 +2,10 @@ import Layout from "@organisms/admin/Layout";
 import * as S from "./styles";
 import {BorrowCard} from "@molecules/admin/BorrowCard";
 import {BorrowFilter} from "@organisms/admin/BorrowFilter";
+import {useBorrow} from "@templates/admin/BorrowedList/useBorrow";
 
 export const BorrowedListTemplate = () => {
+    const {values, mutation} = useBorrow();
     return (
         <Layout>
             <S.HeaderWrapper>
@@ -12,30 +14,19 @@ export const BorrowedListTemplate = () => {
             </S.HeaderWrapper>
             <S.Root>
                 <S.BorrowContainer>
-                    <BorrowFilter/>
+                    <BorrowFilter key="filter" state={values.states} mutation={mutation}/>
                     <S.BorrowedBooksList>
-                        <BorrowCard
-                            title="Alchemist"
-                            author="Paulo Coelho"
-                            image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                            status="Due soon"
-                        />
-                        <BorrowCard
-                            title="Alchemist"
-                            author="Paulo Coelho"
-                            image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                            status="Due soon"
-                        /><BorrowCard
-                        title="Alchemist"
-                        author="Paulo Coelho"
-                        image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                        status="Due soon"
-                    /><BorrowCard
-                        title="Alchemist"
-                        author="Paulo Coelho"
-                        image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                        status="Due soon"
-                    />
+                        {
+                            values?.issuedBooks?.map((borrow, index) => (
+                                <BorrowCard
+                                    key={index}
+                                    title={borrow.book.name}
+                                    author={borrow.book.author}
+                                    image={borrow.book.image}
+                                    status="Due soon"
+                                />
+                            ))
+                        }
                     </S.BorrowedBooksList>
                 </S.BorrowContainer>
                 <S.ReaderInfoContainer>
