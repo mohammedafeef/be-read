@@ -23,12 +23,14 @@ export const BorrowedListTemplate = () => {
                             values?.issuedBooks?.map((borrow, index) => (
                                 <BorrowCard
                                     key={index}
+                                    id={borrow.id}
                                     title={borrow.book.name}
                                     author={borrow.book.author}
                                     studentName={borrow.student.fullname}
                                     image={borrow.book.image}
                                     returnDate={borrow.returnDate}
                                     issuedDate={borrow.issuedDate}
+                                    isReturned={borrow.isReturned}
                                     status="Due soon"
                                 />
                             ))

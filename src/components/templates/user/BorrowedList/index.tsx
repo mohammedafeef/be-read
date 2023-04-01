@@ -25,7 +25,7 @@ export const BorrowedListTemplate = () => {
                                     image={borrow.book.image}
                                     returnDate={borrow.returnDate}
                                     issuedDate={borrow.issuedDate}
-                                    status="Due soon"
+                                    isReturned={borrow.isReturned}
                                 />
                             ))
                         }

@@ -5,9 +5,9 @@ interface Props {
     title: string;
     author: string;
     image: string;
-    status: string;
     issuedDate: Date;
     returnDate: Date;
+    isReturned: boolean;
 }
 
 export const BorrowCard = (props: Props) => {
@@ -28,7 +28,7 @@ export const BorrowCard = (props: Props) => {
                 <Img src={props.title}/>
             </S.BookThumbnail>
             <S.BookInfo>
-                <StatusLabel title={getStatus(props.returnDate)}/>
+                <StatusLabel title={props.isReturned ? "Returned" : getStatus(props.returnDate)}/>
                 <S.Title>{props.title}</S.Title>
                 <S.Author>{props.author}</S.Author>
                 <S.DateWrapper>

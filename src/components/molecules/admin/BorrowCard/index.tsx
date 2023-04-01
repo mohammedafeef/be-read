@@ -1,7 +1,11 @@
 import * as S from "./styles";
 import {Img, StatusLabel} from "@atoms/index";
+import {useMutation} from "react-query";
+import toast from "react-hot-toast";
+import {returnBook} from "@app/services/bookIssueService";
 
 interface Props {
+    id: string;
     title: string;
     author: string;
     studentName: string;
@@ -9,6 +13,7 @@ interface Props {
     status: string;
     issuedDate: Date;
     returnDate: Date;
+    isReturned: boolean;
 }
 
 export const BorrowCard = (props: Props) => {
@@ -23,13 +28,30 @@ export const BorrowCard = (props: Props) => {
         const today = new Date();
         return today > returnDate ? "Overdue" : "Due soon";
     }
+    const returnBookMutation = useMutation(
+        async (id: string) => {
+            await returnBook(id);
+        },
+        {
+            onSuccess: async () => {
+                toast.success('Book marked as returned');
+            },
+            onError: () => {
+                toast.error("Something went wrong, please try again");
+            }
+        },
+    );
+
+    const handleReturn = () => {
+        returnBookMutation.mutate(props.id);
+    }
     return (
         <S.Root>
             <S.BookThumbnail>
                 <Img src={props.title}/>
             </S.BookThumbnail>
             <S.BookInfo>
-                <StatusLabel title={getStatus(props.returnDate)}/>
+                <StatusLabel title={props.isReturned ? "Returned" : getStatus(props.returnDate)}/>
                 <S.Title>{props.title}</S.Title>
                 <S.Author>{props.author}</S.Author>
                 <S.StudentName>Student : {props.studentName}</S.StudentName>
@@ -41,9 +63,9 @@ export const BorrowCard = (props: Props) => {
                         Due on {getFormattedDate(props.issuedDate)}
                     </S.DateConatiners>
                 </S.DateWrapper>
-                <S.ButtonWrapper>
-                    <S.ReturnButton>Mark as Returned</S.ReturnButton>
-                </S.ButtonWrapper>
+                {!props.isReturned && <S.ButtonWrapper>
+                    <S.ReturnButton onClick={handleReturn}>Mark as Returned</S.ReturnButton>
+                </S.ButtonWrapper>}
             </S.BookInfo>
         </S.Root>
     )
