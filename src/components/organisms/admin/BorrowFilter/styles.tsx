@@ -6,6 +6,7 @@ export const Root = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 10px;
 `
 export const SearchBar = styled.input`
   width: 200px;

@@ -1,6 +1,6 @@
 import * as S from "./styles";
 import {Img, Tag} from "@atoms/index";
-import Layout from "@organisms/user/Layout";
+import Layout from "@organisms/admin/Layout";
 import {BookDeatailsPageProps} from "@app/types/BookDeatailsPageProps";
 
 export default function BookDetailsTemplate(props: BookDeatailsPageProps) {

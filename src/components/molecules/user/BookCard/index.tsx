@@ -1,6 +1,7 @@
 import * as S from "./styles";
 import Img from "@atoms/Img";
 import {StatusLabel} from "@atoms/index";
+import useAdminRouter from "@app/lib/route-manager/admin-routes";
 
 interface Props {
     id: string;
@@ -11,8 +12,9 @@ interface Props {
 }
 
 export function BookCard(props: Props) {
+    const router = useAdminRouter();
     return (
-        <S.Root>
+        <S.Root onClick={() => router.book.details(props.id).navigate()}>
             <S.ImageWrapper>
                 <Img src={props.image} alt={props.title}/>
             </S.ImageWrapper>

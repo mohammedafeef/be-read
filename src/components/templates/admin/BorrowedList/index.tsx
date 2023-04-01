@@ -3,14 +3,17 @@ import * as S from "./styles";
 import {BorrowCard} from "@molecules/admin/BorrowCard";
 import {BorrowFilter} from "@organisms/admin/BorrowFilter";
 import {useBorrow} from "@templates/admin/BorrowedList/useBorrow";
+import useAdminRouter from "@app/lib/route-manager/admin-routes";
 
 export const BorrowedListTemplate = () => {
     const {values, mutation} = useBorrow();
+    const router = useAdminRouter();
     return (
         <Layout>
             <S.HeaderWrapper>
                 <S.Title>Borrowed Books</S.Title>
-                <S.createBorrowButton>Issue Book</S.createBorrowButton>
+                <S.createBorrowButton onClick={() => router.book.issueBook().navigate()}>Issue
+                    Book</S.createBorrowButton>
             </S.HeaderWrapper>
             <S.Root>
                 <S.BorrowContainer>
