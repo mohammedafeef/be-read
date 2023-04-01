@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 const Root = styled.div`
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid #808080;
-  padding: 5px 8px;
+  padding: 5px;
   font-size: 10px;
-  color: #808080
+  color: #808080;
+  height: fit-content;
 `
 
 interface Props {

@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const Root = styled.div`
-    display: flex;
+  display: flex;
 `
 
 export const ImageWrapper = styled.div`
@@ -17,13 +19,13 @@ export const ContentWrapper = styled.div`
 `
 
 export const Author = styled.p`
-  font-size: 15px;
+  font-size: 13px;
   color: #808080;
 `
 
 export const Title = styled.h1`
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 400;
   color: #000;
 `
 
@@ -38,3 +40,31 @@ export const Summary = styled.p`
   font-size: 15px;
   color: #000;
 `
+
+export const WishListWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+`
+
+export const LikeIcon = styled(FavoriteBorderIcon)`
+  font-size: 30px !important;
+  color: black;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+
+  :hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const LikedIcon = styled(FavoriteIcon)`
+  font-size: 30px !important;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+  color: red;
+
+  :hover {
+    transform: scale(1.1);
+  }
+`;

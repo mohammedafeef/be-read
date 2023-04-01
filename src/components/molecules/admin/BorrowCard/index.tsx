@@ -10,10 +10,10 @@ interface Props {
     author: string;
     studentName: string;
     image: string;
-    status: string;
     issuedDate: Date;
     returnDate: Date;
     isReturned: boolean;
+    refetch: () => void;
 }
 
 export const BorrowCard = (props: Props) => {
@@ -31,6 +31,7 @@ export const BorrowCard = (props: Props) => {
     const returnBookMutation = useMutation(
         async (id: string) => {
             await returnBook(id);
+            await props.refetch();
         },
         {
             onSuccess: async () => {
@@ -54,7 +55,7 @@ export const BorrowCard = (props: Props) => {
                 <StatusLabel title={props.isReturned ? "Returned" : getStatus(props.returnDate)}/>
                 <S.Title>{props.title}</S.Title>
                 <S.Author>{props.author}</S.Author>
-                <S.StudentName>Student : {props.studentName}</S.StudentName>
+                <S.StudentName>Book issued for {props.studentName}</S.StudentName>
                 <S.DateWrapper>
                     <S.DateConatiners>
                         Issued on {getFormattedDate(props.issuedDate)}

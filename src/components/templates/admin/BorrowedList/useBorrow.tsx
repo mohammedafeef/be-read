@@ -7,7 +7,7 @@ export const useBorrow = () => {
     const [status, setStatus] = useState("all");
     const [keyword, setKeyword] = useState("");
 
-    const {data} = useQuery({
+    const {data, refetch} = useQuery({
         queryKey: ['admin-requests'],
         async queryFn(): Promise<Borrow[]> {
             const request = await getIssuedBooks();
@@ -47,7 +47,8 @@ export const useBorrow = () => {
         },
         mutation: {
             handleStatusChange,
-            handleKeywordChange
+            handleKeywordChange,
+            refetch
         }
     }
 }

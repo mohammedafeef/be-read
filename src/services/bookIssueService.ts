@@ -17,6 +17,6 @@ export const getIssuedBooksByUserId = async (userId: string) => {
 
 export const returnBook = async (id: string) => {
     return updateDoc(doc(db, collections.bookRequests, id), {
-        isReturned: false
+        isReturned: true
     });
 }

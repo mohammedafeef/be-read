@@ -20,7 +20,7 @@ interface Props {
 }
 
 export default function StatusLabel(props: Props) {
-    return props.title === "Overdue" ? (
+    return props.title === "Overdue" || props.title === "In Hand" ? (
         <DangerRoot>
             {props.title}
         </DangerRoot>

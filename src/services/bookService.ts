@@ -1,6 +1,6 @@
 import {ref, uploadBytes} from "@firebase/storage";
 import {db, storage} from "@app/services/firebaseClient";
-import {addDoc, collection, doc, getDoc, getDocs, updateDoc} from "@firebase/firestore";
+import {addDoc, collection, doc, getDoc, getDocs, updateDoc,} from "@firebase/firestore";
 import {collections} from "@app/constansts/firebaseKeys";
 import {BookCreationProps} from "@app/types/BookCreationProps";
 
@@ -40,3 +40,4 @@ export const updateBookStatus = async (id: string) => {
         isAvailable: false
     });
 }
+

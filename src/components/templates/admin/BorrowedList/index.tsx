@@ -31,7 +31,7 @@ export const BorrowedListTemplate = () => {
                                     returnDate={borrow.returnDate}
                                     issuedDate={borrow.issuedDate}
                                     isReturned={borrow.isReturned}
-                                    status="Due soon"
+                                    refetch={mutation.refetch}
                                 />
                             ))
                         }

@@ -47,16 +47,23 @@ export const ButtonWrapper = styled.div`
 `
 
 export const ReturnButton = styled.button`
+  cursor: pointer;
   border-radius: 8px;
   padding: 8px 10px;
   font-size: 13px;
   color: green;
   border: 1px solid green;
   width: fit-content;
+  background: transparent;
+  transition: scale 0.1s ease-in-out;
+
+  &:hover {
+    scale: 1.02;
+  }
 `
 
 export const StudentName = styled.div`
   font-size: 13px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  color: gray;
 `
