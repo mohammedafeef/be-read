@@ -27,3 +27,13 @@ export const Author = styled.p`
     font-size: 13px;
     color: rgba(0, 0, 0, 0.5);
 `
+
+export const DateWrapper = styled.div`
+  display: flex;
+  column-gap: 10px;
+`
+
+export const DateConatiners = styled.div`
+  font-size: 12px;
+  color: gray;
+`

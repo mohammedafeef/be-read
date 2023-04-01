@@ -27,3 +27,36 @@ export const Author = styled.p`
     font-size: 13px;
     color: rgba(0, 0, 0, 0.5);
 `
+
+
+export const DateWrapper = styled.div`
+  display: flex;
+  column-gap: 10px;
+`
+
+export const DateConatiners = styled.div`
+  font-size: 13px;
+  color: gray;
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: flex-end;
+`
+
+export const ReturnButton = styled.button`
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: green;
+  border: 1px solid green;
+  width: fit-content;
+`
+
+export const StudentName = styled.div`
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+`

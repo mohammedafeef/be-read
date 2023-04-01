@@ -67,7 +67,8 @@ export const useForm = () => {
                 student: {
                     ...student.data(),
                     id: value.student,
-                }
+                },
+                isReturned: false,
             };
 
             await createNewRequest(requestData);

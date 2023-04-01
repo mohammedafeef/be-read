@@ -25,7 +25,10 @@ export const BorrowedListTemplate = () => {
                                     key={index}
                                     title={borrow.book.name}
                                     author={borrow.book.author}
+                                    studentName={borrow.student.fullname}
                                     image={borrow.book.image}
+                                    returnDate={borrow.returnDate}
+                                    issuedDate={borrow.issuedDate}
                                     status="Due soon"
                                 />
                             ))

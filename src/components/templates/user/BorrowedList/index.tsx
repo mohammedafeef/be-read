@@ -2,7 +2,6 @@ import Layout from "@organisms/user/Layout";
 import * as S from "./styles";
 import {BorrowCard} from "@molecules/user/BorrowCard";
 import {useBorrow} from "@templates/admin/BorrowedList/useBorrow";
-import useUserRouter from "@app/lib/route-manager/user-routes";
 
 export const BorrowedListTemplate = () => {
     const {values, mutation} = useBorrow();
@@ -24,6 +23,8 @@ export const BorrowedListTemplate = () => {
                                     title={borrow.book.name}
                                     author={borrow.book.author}
                                     image={borrow.book.image}
+                                    returnDate={borrow.returnDate}
+                                    issuedDate={borrow.issuedDate}
                                     status="Due soon"
                                 />
                             ))

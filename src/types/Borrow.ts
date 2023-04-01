@@ -5,7 +5,8 @@ export interface Borrow {
     id: string;
     book: Book;
     student: User;
-    issuedDate: number;
-    returnDate: number;
+    issuedDate: Date;
+    returnDate: Date;
     remarks?: string;
+    isReturned: boolean;
 }

@@ -1,4 +1,4 @@
-import {addDoc, collection, getDocs, query, where} from "@firebase/firestore";
+import {addDoc, collection, doc, getDocs, query, updateDoc, where} from "@firebase/firestore";
 import {db} from "@app/services/firebaseClient";
 import {collections} from "@app/constansts/firebaseKeys";
 
@@ -13,4 +13,10 @@ export const getIssuedBooks = async () => {
 
 export const getIssuedBooksByUserId = async (userId: string) => {
     return getDocs(query(collection(db, collections.bookRequests), where("student.id", "==", userId)));
+}
+
+export const returnBook = async (id: string) => {
+    return updateDoc(doc(db, collections.bookRequests, id), {
+        isReturned: false
+    });
 }
