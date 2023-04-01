@@ -1,27 +1,46 @@
 import Layout from "@organisms/user/Layout";
 import * as S from "./styles";
-import {Button, TextInput} from "@atoms/index";
+import {Button} from "@atoms/index";
 import {BookListCard} from "@molecules/user/BooksListCard";
+import {useSearch} from "@templates/user/Books/useSearch";
+import SelectInput from "@atoms/SelectInput";
 
 export default function BooksTemplate() {
+    const {values, mutation} = useSearch();
     return (
         <Layout>
             <S.Root>
                 <S.FilterWrapper>
                     <S.FilterTitle>Filters</S.FilterTitle>
-                    <TextInput
+                    <SelectInput
+                        name="author"
+                        value={values.states.author}
+                        onChange={mutation.handleAuthorChange}
+                        options={values?.options?.authors}
                         label="Select Author"
                         select
                     />
-                    <TextInput
+                    <SelectInput
+                        name="genre"
+                        value={values.states.genre}
+                        onChange={mutation.handleGenreChange}
+                        options={values?.options?.genres}
                         label="Select Genre"
                         select
                     />
-                    <TextInput
+                    <SelectInput
+                        name="language"
+                        value={values.states.language}
+                        onChange={mutation.handleLanguageChange}
+                        options={values?.options?.languages}
                         label="Select Language"
                         select
                     />
-                    <TextInput
+                    <SelectInput
+                        name="publisher"
+                        value={values.states.publisher}
+                        onChange={mutation.handlePublisherChange}
+                        options={values?.options?.publishers}
                         label="Select Publisher"
                         select
                     />
@@ -30,54 +49,18 @@ export default function BooksTemplate() {
                 <S.ContentWrapper>
                     <S.ContentTitle>Filtered Books</S.ContentTitle>
                     <S.BooksWrapper>
-                        <BookListCard
-                            title="The Lord of the Rings"
-                            author="J.R.R. Tolkien"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="A Game of Thrones"
-                            author="George R. R. Martin"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="Alchemist"
-                            author="Paulo Coelho"
-                            image="https://media.gettyimages.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=gi&k=20&c=_Yaofm8sZLZkKs1eMkv-zhk8K4k5u0g0fJuQrReWfdQ="
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="The Lord of the Rings"
-                            author="J.R.R. Tolkien"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="A Game of Thrones"
-                            author="George R. R. Martin"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="Alchemist"
-                            author="Paulo Coelho"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="The Lord of the Rings"
-                            author="J.R.R. Tolkien"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
-                        <BookListCard
-                            title="A Game of Thrones"
-                            author="George R. R. Martin"
-                            image="https://images-na.ssl-images-amazon.com/images/I/51Zt3QZQFJL._SX331_BO1,204,203,200_.jpg"
-                            status="Available"
-                        />
+                        {
+                            values?.books?.map((book, index) => (
+                                <BookListCard
+                                    key={index}
+                                    id={book.id}
+                                    title={book.name}
+                                    author={book.author}
+                                    image={book.image}
+                                    status={book.isAvailable ? "Available" : "In Hand"}
+                                />
+                            ))
+                        }
                     </S.BooksWrapper>
                 </S.ContentWrapper>
             </S.Root>

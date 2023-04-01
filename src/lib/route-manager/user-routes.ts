@@ -17,6 +17,7 @@ const useUserRouter = () => {
         home: () => Route.private(router, HOME_URL),
         book: {
             search: (query?: ParsedUrlQueryInput,) => Route.private(router, BOOK_URL, query),
+            details: (id: string) => Route.private(router, `/user/book/${id}`),
         },
         borrow: {
             list: () => Route.private(router, '/user/borrow'),
