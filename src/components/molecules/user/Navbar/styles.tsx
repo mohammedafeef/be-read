@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import LowPriorityIcon from '@mui/icons-material/LowPriority';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 export const Root = styled.div`
@@ -59,11 +60,11 @@ export const SearchIcon = styled(SearchOutlinedIcon)`
 export const AccountActionWrapper = styled.div`
   display: flex;
   align-items: center;
+  column-gap: 20px;
 `;
 export const LogoutButton = styled.button`
   cursor: pointer;
   padding: 10px 20px;
-  margin-left: 80px;
   font-size: 15px;
   font-weight: 700;
   color: white;
@@ -92,3 +93,15 @@ export const ListIcon = styled(LibraryBooksIcon)`
     transform: scale(1.1);
   }
 `;
+
+export const BorrowIcon = styled(LowPriorityIcon)`
+  font-size: 30px !important;
+  color: black;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+
+  :hover {
+    transform: scale(1.1);
+  }
+`;
+
