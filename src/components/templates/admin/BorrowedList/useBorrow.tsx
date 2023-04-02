@@ -3,6 +3,8 @@ import {useQuery} from "react-query";
 import {Borrow} from "@app/types/Borrow";
 import {getIssuedBooks} from "@app/services/bookIssueService";
 
+const date = new Date().getTime();
+
 export const useBorrow = () => {
     const [status, setStatus] = useState("all");
     const [keyword, setKeyword] = useState("");
@@ -24,10 +26,18 @@ export const useBorrow = () => {
 
     const issuedBooks = useMemo(() => {
         return data?.filter((request: Borrow) => {
+            console.log(status,request,date);
+            if (status === "pending" && (Number(request.returnDate) > date || request.isReturned))
+                return false;
+            if (status === "returned" && !request.isReturned)
+                return false;
+            if (status === "overdue" && (Number(request.returnDate) < date || request.isReturned))
+                return false;
+
             return !(keyword && !request.book.name.toLowerCase().includes(keyword.toLowerCase()));
 
         })
-    }, [data, keyword]);
+    }, [data, keyword, status]);
 
 
     const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {

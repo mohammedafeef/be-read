@@ -1,4 +1,5 @@
 import * as S from "./styles";
+import SelectInput from "@atoms/SelectInput";
 
 interface Props {
     state: {
@@ -16,8 +17,15 @@ export const BorrowFilter = (props: Props) => {
     return (
         <S.Root>
             <S.SearchBar placeholder="Book name" value={state.keyword} onChange={mutation.handleKeywordChange}/>
-            {/*<TextInput select label="status" size="small" sx={{minWidth: 100}} value={state.status}*/}
-            {/*           onChange={mutation.handleStatusChange}/>*/}
+            <SelectInput select label="status" size="small" sx={{width: 150}} value={state.status}
+                         onChange={mutation.handleStatusChange}
+                         options={[
+                             {value: "all", label: "All"},
+                             {value: "pending", label: "Pending"},
+                             {value: "overdue", label: "Overdue"},
+                             {value: "returned", label: "Returned"}
+                         ]}
+            />
         </S.Root>
     )
 }
