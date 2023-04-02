@@ -15,20 +15,28 @@ export const BooksTemplate = () => {
                 <S.CreateBookButton onClick={() => router.book.create().navigate()}>Add Book</S.CreateBookButton>
             </S.HeaderWrapper>
             <BooksFilter options={values.options} mutation={mutation} state={values.states}/>
-            <S.BooksList>
-                {
-                    values?.books?.map((book, index) => (
-                        <BookCard
-                            key={index}
-                            id={book.id}
-                            title={book.name}
-                            author={book.author}
-                            image={book.image}
-                            status={book.isAvailable ? "Available" : "In Hand"}
-                        />
-                    ))
-                }
-            </S.BooksList>
+            {
+                values?.books?.length === 0 ? (
+                    <S.EmptyList>
+                        No books found
+                    </S.EmptyList>
+                ) : (
+                    <S.BooksList>
+                        {
+                            values?.books?.map((book, index) => (
+                                <BookCard
+                                    key={index}
+                                    id={book.id}
+                                    title={book.name}
+                                    author={book.author}
+                                    image={book.image}
+                                    status={book.isAvailable ? "Available" : "In Hand"}
+                                />
+                            ))
+                        }
+                    </S.BooksList>)
+            }
+
         </Layout>
     )
 }

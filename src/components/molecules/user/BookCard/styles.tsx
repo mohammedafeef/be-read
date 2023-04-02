@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Root = styled.div`
+  width:200px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;

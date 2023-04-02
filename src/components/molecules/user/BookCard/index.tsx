@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import Img from "@atoms/Img";
 import {StatusLabel} from "@atoms/index";
-import useUserRouter from "@app/lib/route-manager/user-routes";
+import useAdminRouter from "@app/lib/route-manager/admin-routes";
 
 interface Props {
     id: string;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function BookCard(props: Props) {
-    const router = useUserRouter();
+    const router = useAdminRouter();
     return (
         <S.Root onClick={() => router.book.details(props.id).navigate()}>
             <S.ImageWrapper>

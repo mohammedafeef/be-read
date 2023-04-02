@@ -89,6 +89,13 @@ export const useBooks = () => {
         onError: (error: any) => console.error("happened man", error)
 
     });
+    const handleReset = () => {
+        setAuthor("");
+        setPublisher("");
+        setGenre("");
+        setLanguage("");
+        setKeyword("");
+    }
     const handleAuthorChange = (e: any) => {
         setAuthor(e.target.value);
     }
@@ -119,7 +126,8 @@ export const useBooks = () => {
             handleAuthorChange,
             handlePublisherChange,
             handleGenreChange,
-            handleLanguageChange
+            handleLanguageChange,
+            handleReset
         }
     }
 }

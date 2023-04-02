@@ -16,6 +16,7 @@ interface Props {
         handleGenreChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
         handleLanguageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
         handlePublisherChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+        handleReset: () => void;
     };
 }
 
@@ -23,7 +24,10 @@ export const BooksFilter = (props: Props) => {
     const {state, mutation, options} = props;
     return (
         <S.Root>
-            <S.Title>Filters</S.Title>
+            <S.TitleWrapper>
+                <S.Title>Filters</S.Title>
+                <S.ResetButton onClick={mutation.handleReset}>Reset</S.ResetButton>
+            </S.TitleWrapper>
             <S.InputContainer>
                 <S.InputWrapper>
                     <SelectInput

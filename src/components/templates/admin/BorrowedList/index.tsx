@@ -18,25 +18,33 @@ export const BorrowedListTemplate = () => {
             <S.Root>
                 <S.BorrowContainer>
                     <BorrowFilter key="filter" state={values.states} mutation={mutation}/>
-                    <S.BorrowedBooksList>
-                        {
-                            values?.issuedBooks?.map((borrow, index) => (
-                                <BorrowCard
-                                    key={index}
-                                    id={borrow.id}
-                                    bookId={borrow.book.id}
-                                    title={borrow.book.name}
-                                    author={borrow.book.author}
-                                    studentName={borrow.student.fullname}
-                                    image={borrow.book.image}
-                                    returnDate={borrow.returnDate}
-                                    issuedDate={borrow.issuedDate}
-                                    isReturned={borrow.isReturned}
-                                    refetch={mutation.refetch}
-                                />
-                            ))
-                        }
-                    </S.BorrowedBooksList>
+                    {
+                        values?.issuedBooks?.length === 0 ? (
+                            <S.EmptyList>
+                                No requests found
+                            </S.EmptyList>
+                        ) : (
+                            <S.BorrowedBooksList>
+                                {
+                                    values?.issuedBooks?.map((borrow, index) => (
+                                        <BorrowCard
+                                            key={index}
+                                            id={borrow.id}
+                                            bookId={borrow.book.id}
+                                            title={borrow.book.name}
+                                            author={borrow.book.author}
+                                            studentName={borrow.student.fullname}
+                                            image={borrow.book.image}
+                                            returnDate={borrow.returnDate}
+                                            issuedDate={borrow.issuedDate}
+                                            isReturned={borrow.isReturned}
+                                            refetch={mutation.refetch}
+                                        />
+                                    ))
+                                }
+                            </S.BorrowedBooksList>
+                        )
+                    }
                 </S.BorrowContainer>
                 <S.ReaderInfoContainer>
                     <S.Title>Borrow Info</S.Title>

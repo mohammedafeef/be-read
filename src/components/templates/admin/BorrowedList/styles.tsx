@@ -82,3 +82,12 @@ export const BorrowedBooksList = styled.div`
   gap: 10px;
 `
 
+export const EmptyList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+  color: gray;
+`
+

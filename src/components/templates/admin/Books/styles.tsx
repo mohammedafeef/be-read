@@ -31,3 +31,12 @@ export const Title = styled.h1`
   font-weight: 500;
   margin-bottom: 15px;
 `
+
+export const EmptyList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+  color: gray;
+`
