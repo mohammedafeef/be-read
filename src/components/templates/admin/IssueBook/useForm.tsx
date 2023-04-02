@@ -35,9 +35,10 @@ export const useForm = () => {
                 }
             });
             users.forEach((doc) => {
-                options.users = [...options.users as Option[], {
-                    label: doc.data().fullname, value: doc.id
-                }]
+                if (doc.data().role === 'user')
+                    options.users = [...options.users as Option[], {
+                        label: doc.data().fullname, value: doc.id
+                    }]
             });
 
             return options;
@@ -94,7 +95,7 @@ export const useForm = () => {
         book: Yup.string()
             .required('Select the book'),
         issuedDate: Yup.string().required('Issued date is required'),
-        remark: Yup.string().required('Remark is required'),
+        remark: Yup.string(),
 
     });
 

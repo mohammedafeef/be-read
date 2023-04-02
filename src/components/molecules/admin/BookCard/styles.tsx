@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
 export const Root = styled.div`
+  width:200px;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  border: .5px solid rgba(0, 0, 0, 0.1);
   padding: 15px;
   row-gap: 10px;
   cursor: pointer;
-  width:210px;
+  transition: transform 0.1s ease-in-out;
+
+  :hover {
+    transform: scale(1.01);
+  }
 `;
 
 export const ImageWrapper = styled.div`

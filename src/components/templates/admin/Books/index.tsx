@@ -1,7 +1,7 @@
 import Layout from "@organisms/admin/Layout";
 import {BooksFilter} from "@organisms/admin/BooksFilter";
 import * as S from "./styles";
-import {BookCard} from "@molecules/user/BookCard";
+import {BookCard} from "@molecules/admin/BookCard";
 import {useBooks} from "@templates/admin/Books/useBooks";
 import useAdminRouter from "@app/lib/route-manager/admin-routes";
 

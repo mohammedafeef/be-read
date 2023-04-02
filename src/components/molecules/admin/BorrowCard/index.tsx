@@ -27,8 +27,8 @@ export const BorrowCard = (props: Props) => {
         return `${day}-${month}-${year}`;
     }
     const getStatus = (returnDate: Date) => {
-        const today = new Date();
-        return today > returnDate ? "Overdue" : "Due soon";
+        const today = new Date().getTime();
+        return today > Number(returnDate) ? "Overdue" : "Due soon";
     }
     const returnBookMutation = useMutation(
         async (id: string) => {
@@ -52,7 +52,7 @@ export const BorrowCard = (props: Props) => {
     return (
         <S.Root>
             <S.BookThumbnail>
-                <Img src={props.title}/>
+                <Img src={props.image}/>
             </S.BookThumbnail>
             <S.BookInfo>
                 <StatusLabel title={props.isReturned ? "Returned" : getStatus(props.returnDate)}/>
@@ -64,7 +64,7 @@ export const BorrowCard = (props: Props) => {
                         Issued on {getFormattedDate(props.issuedDate)}
                     </S.DateConatiners>
                     <S.DateConatiners>
-                        Due on {getFormattedDate(props.issuedDate)}
+                        Due on {getFormattedDate(props.returnDate)}
                     </S.DateConatiners>
                 </S.DateWrapper>
                 {!props.isReturned && <S.ButtonWrapper>

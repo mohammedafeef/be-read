@@ -27,11 +27,11 @@ export const useBorrow = () => {
     const issuedBooks = useMemo(() => {
         return data?.filter((request: Borrow) => {
             console.log(status,request,date);
-            if (status === "pending" && (Number(request.returnDate) > date || request.isReturned))
+            if (status === "pending" && (Number(request.returnDate) < date || request.isReturned))
                 return false;
             if (status === "returned" && !request.isReturned)
                 return false;
-            if (status === "overdue" && (Number(request.returnDate) < date || request.isReturned))
+            if (status === "overdue" && (Number(request.returnDate) > date || request.isReturned))
                 return false;
 
             return !(keyword && !request.book.name.toLowerCase().includes(keyword.toLowerCase()));

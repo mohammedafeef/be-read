@@ -12,7 +12,7 @@ const DangerRoot = styled(Root)`
   background-color: rgba(210, 10, 10, .9);
 `
 const WarningRoot = styled(Root)`
-  background-color: rgba(210, 10, 10, .9);
+  background-color: rgba(255, 165, 0, .9);
 `
 
 interface Props {

@@ -44,6 +44,7 @@ export default function BooksTemplate() {
                         label="Select Publisher"
                         select
                     />
+                    <Button onClick={mutation.handleReset}>Reset</Button>
                     <Button>Apply</Button>
                 </S.FilterWrapper>
                 <S.ContentWrapper>

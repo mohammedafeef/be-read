@@ -36,7 +36,7 @@ export const BorrowCard = (props: Props) => {
                         Issued on {getFormattedDate(props.issuedDate)}
                     </S.DateConatiners>
                     <S.DateConatiners>
-                        Due on {getFormattedDate(props.issuedDate)}
+                        Due on {getFormattedDate(props.returnDate)}
                     </S.DateConatiners>
                 </S.DateWrapper>
             </S.BookInfo>
