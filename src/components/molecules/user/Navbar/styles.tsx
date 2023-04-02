@@ -9,7 +9,7 @@ export const Root = styled.div`
   left: 0;
   width: 100%;
   background: white;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   height: 100px;
   padding: 30px 100px;
