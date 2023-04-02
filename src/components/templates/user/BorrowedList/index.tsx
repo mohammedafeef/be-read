@@ -15,21 +15,29 @@ export const BorrowedListTemplate = () => {
                         {/*<TextInput select label="status" size="small" sx={{minWidth: 100}}/>*/}
                     </S.FilterWrapper>
                     <S.Title>Borrowed Books</S.Title>
-                    <S.BorrowedBooksList>
-                        {
-                            values?.issuedBooks?.map((borrow, index) => (
-                                <BorrowCard
-                                    key={index}
-                                    title={borrow.book.name}
-                                    author={borrow.book.author}
-                                    image={borrow.book.image}
-                                    returnDate={borrow.returnDate}
-                                    issuedDate={borrow.issuedDate}
-                                    isReturned={borrow.isReturned}
-                                />
-                            ))
-                        }
-                    </S.BorrowedBooksList>
+                    {
+                        values?.issuedBooks?.length === 0 ? (<S.EmptyList>
+                            No requests found
+                        </S.EmptyList>) : (
+
+
+                            <S.BorrowedBooksList>
+                                {
+                                    values?.issuedBooks?.map((borrow, index) => (
+                                        <BorrowCard
+                                            key={index}
+                                            title={borrow.book.name}
+                                            author={borrow.book.author}
+                                            image={borrow.book.image}
+                                            returnDate={borrow.returnDate}
+                                            issuedDate={borrow.issuedDate}
+                                            isReturned={borrow.isReturned}
+                                        />
+                                    ))
+                                }
+                            </S.BorrowedBooksList>
+                        )
+                    }
                 </S.BorrowContainer>
                 <S.ReaderInfoContainer>
                     <S.Title>Reader Info</S.Title>

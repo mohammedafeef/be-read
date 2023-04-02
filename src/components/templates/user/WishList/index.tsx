@@ -9,20 +9,26 @@ export const WishListTemplate = () => {
         <Layout>
             <S.Root>
                 <S.Title>Favorite Books</S.Title>
-                <S.FavoriteBooksList>
-                    {
-                        data?.map((book, index) => (
-                            <WishCard
-                                key={index}
-                                id={book.book.id}
-                                title={book.book.name}
-                                author={book.book.author}
-                                image={book.book.image}
-                                status={book.book.isAvailable ? "Available" : "In Hand"}
-                            />
-                        ))
-                    }
-                </S.FavoriteBooksList>
+                {
+                    data?.length === 0 ? (<S.EmptyList>No Favorite books found</S.EmptyList>) : (
+
+                        <S.FavoriteBooksList>
+                            {
+                                data?.map((book, index) => (
+                                    <WishCard
+                                        key={index}
+                                        id={book.book.id}
+                                        title={book.book.name}
+                                        author={book.book.author}
+                                        image={book.book.image}
+                                        status={book.book.isAvailable ? "Available" : "In Hand"}
+                                    />
+                                ))
+                            }
+                        </S.FavoriteBooksList>
+
+                    )
+                }
             </S.Root>
         </Layout>
     )

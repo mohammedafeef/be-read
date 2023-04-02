@@ -49,20 +49,24 @@ export default function BooksTemplate() {
                 </S.FilterWrapper>
                 <S.ContentWrapper>
                     <S.ContentTitle>Filtered Books</S.ContentTitle>
-                    <S.BooksWrapper>
-                        {
-                            values?.books?.map((book, index) => (
-                                <BookListCard
-                                    key={index}
-                                    id={book.id}
-                                    title={book.name}
-                                    author={book.author}
-                                    image={book.image}
-                                    status={book.isAvailable ? "Available" : "In Hand"}
-                                />
-                            ))
-                        }
-                    </S.BooksWrapper>
+                    {
+                        values?.books?.length === 0 ? (<S.EmptyList>No books found</S.EmptyList>) : (
+                            <S.BooksWrapper>
+                                {
+                                    values?.books?.map((book, index) => (
+                                        <BookListCard
+                                            key={index}
+                                            id={book.id}
+                                            title={book.name}
+                                            author={book.author}
+                                            image={book.image}
+                                            status={book.isAvailable ? "Available" : "In Hand"}
+                                        />
+                                    ))
+                                }
+                            </S.BooksWrapper>
+                        )
+                    }
                 </S.ContentWrapper>
             </S.Root>
         </Layout>

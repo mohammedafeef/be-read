@@ -25,6 +25,7 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  flex: 1;
 `
 
 export const ContentTitle = styled.h2`
@@ -36,4 +37,12 @@ export const BooksWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+`
+export const EmptyList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+  color: gray;
 `
