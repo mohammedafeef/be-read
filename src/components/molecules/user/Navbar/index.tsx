@@ -3,6 +3,8 @@ import * as S from "./styles";
 import useUserRouter from "@app/lib/route-manager/user-routes";
 import {useState} from "react";
 import toast from "react-hot-toast";
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import LowPriorityIcon from '@mui/icons-material/LowPriority';
 
 export function Navbar() {
     const router = useUserRouter();
@@ -29,17 +31,27 @@ export function Navbar() {
                 <S.SearchButton onClick={handleSearch}><S.SearchIcon/></S.SearchButton>
             </S.SearchContainer>
             <S.AccountActionWrapper>
+                <S.ActionButton
+                    onClick={() => router.home().navigate()}>
+                    <LibraryBooksIcon/> Books
+                </S.ActionButton>
+                <S.ActionButton
+                    onClick={() => router.borrow.list().navigate()}
+
+                >
+                    <LowPriorityIcon/> Requests
+                </S.ActionButton>
                 <Badge
                     color="primary"
-                    onClick={() => router.home().navigate()}
+                    onClick={() => router.wishList().navigate()}
                 >
-                    <S.ListIcon/>
+                    <S.WishListIcon/>
                 </Badge>
                 <Badge
                     color="primary"
-                    onClick={() => router.borrow.list().navigate()}
+                    onClick={() => router.profile().navigate()}
                 >
-                    <S.BorrowIcon/>
+                    <S.AccountIcon/>
                 </Badge>
 
                 <S.LogoutButton onClick={handleLogout}>

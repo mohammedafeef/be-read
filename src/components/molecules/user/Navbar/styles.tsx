@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import LowPriorityIcon from '@mui/icons-material/LowPriority';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 export const Root = styled.div`
   position: fixed;
@@ -83,7 +83,7 @@ export const LogoutButton = styled.button`
     padding: 15px 20px;
   }
 `;
-export const ListIcon = styled(LibraryBooksIcon)`
+export const WishListIcon = styled(FavoriteIcon)`
   font-size: 30px !important;
   color: black;
   cursor: pointer;
@@ -94,7 +94,7 @@ export const ListIcon = styled(LibraryBooksIcon)`
   }
 `;
 
-export const BorrowIcon = styled(LowPriorityIcon)`
+export const AccountIcon = styled(AccountBoxIcon)`
   font-size: 30px !important;
   color: black;
   cursor: pointer;
@@ -104,4 +104,21 @@ export const BorrowIcon = styled(LowPriorityIcon)`
     transform: scale(1.1);
   }
 `;
+
+export const ActionButton = styled.button`
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background:none;
+  transition: transform 0.1s ease-in-out;
+  
+  :hover {
+    transform: scale(1.01);
+  }
+`
 

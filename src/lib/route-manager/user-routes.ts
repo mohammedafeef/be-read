@@ -15,6 +15,8 @@ const useUserRouter = () => {
         login: () => Route.public(router, LOGIN_URL),
         signup: () => Route.public(router, SIGNUP_URL),
         home: () => Route.private(router, HOME_URL),
+        wishList: () => Route.private(router, '/user/wishlist'),
+        profile: () => Route.private(router, '/user/profile'),
         book: {
             search: (query?: ParsedUrlQueryInput,) => Route.private(router, BOOK_URL, query),
             details: (id: string) => Route.private(router, `/user/book/${id}`),

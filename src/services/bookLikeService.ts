@@ -10,6 +10,10 @@ export const getBookLikeByStudentAndBook = async (userId: string, bookId: string
     return getDocs(query(collection(db, collections.bookLikes), where("student.id", "==", userId), where("book.id", "==", bookId)));
 }
 
+export const getBookLikesByStudent = async (userId: string) => {
+    return getDocs(query(collection(db, collections.bookLikes), where("student.id", "==", userId)));
+}
+
 export const unlikeBook = async (id: string) => {
     return deleteDoc(doc(db, collections.bookLikes, id));
 

@@ -24,6 +24,7 @@ export const BorrowedListTemplate = () => {
                                 <BorrowCard
                                     key={index}
                                     id={borrow.id}
+                                    bookId={borrow.book.id}
                                     title={borrow.book.name}
                                     author={borrow.book.author}
                                     studentName={borrow.student.fullname}

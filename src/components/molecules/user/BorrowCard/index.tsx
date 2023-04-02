@@ -25,7 +25,7 @@ export const BorrowCard = (props: Props) => {
     return (
         <S.Root>
             <S.BookThumbnail>
-                <Img src={props.title}/>
+                <Img src={props.image}/>
             </S.BookThumbnail>
             <S.BookInfo>
                 <StatusLabel title={props.isReturned ? "Returned" : getStatus(props.returnDate)}/>

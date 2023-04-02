@@ -26,7 +26,7 @@ export function Navbar() {
                     onClick={() => router.borrow.list().navigate()}
 
                 >
-                    <LowPriorityIcon/> Borrow
+                    <LowPriorityIcon/> Requests
                 </S.ActionButton>
                 <S.LogoutButton onClick={handleLogout}>
                     Logout

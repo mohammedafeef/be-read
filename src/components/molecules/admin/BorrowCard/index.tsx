@@ -3,9 +3,11 @@ import {Img, StatusLabel} from "@atoms/index";
 import {useMutation} from "react-query";
 import toast from "react-hot-toast";
 import {returnBook} from "@app/services/bookIssueService";
+import {markBookAsAvailable} from "@app/services/bookService";
 
 interface Props {
     id: string;
+    bookId: string;
     title: string;
     author: string;
     studentName: string;
@@ -31,6 +33,7 @@ export const BorrowCard = (props: Props) => {
     const returnBookMutation = useMutation(
         async (id: string) => {
             await returnBook(id);
+            await markBookAsAvailable(props.bookId);
             await props.refetch();
         },
         {

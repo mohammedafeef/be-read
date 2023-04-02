@@ -40,4 +40,9 @@ export const updateBookStatus = async (id: string) => {
         isAvailable: false
     });
 }
+export const markBookAsAvailable = async (id: string) => {
+    return updateDoc(doc(db, collections.books, id), {
+        isAvailable: true
+    });
+}
 
