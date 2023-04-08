@@ -67,3 +67,6 @@ export const StudentName = styled.div`
   font-weight: 400;
   color: gray;
 `
+export const FineText = styled.div`
+  font-size: 12px;
+  color: red;`

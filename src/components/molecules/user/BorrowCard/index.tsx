@@ -20,7 +20,13 @@ export const BorrowCard = (props: Props) => {
     }
     const getStatus = (returnDate: Date) => {
         const today = new Date();
-        return today > returnDate ? "Overdue" : "Due soon";
+        return today.getTime() > Number(returnDate) ? "Overdue" : "Due soon";
+    }
+    const getFine = (returnDate: Date) => {
+        const today = new Date();
+        if (today < returnDate) return 0;
+        const diff = Math.abs(today.getTime() - Number(returnDate));
+        return Math.ceil(diff / (1000 * 3600 * 24));
     }
     return (
         <S.Root>
@@ -31,6 +37,8 @@ export const BorrowCard = (props: Props) => {
                 <StatusLabel title={props.isReturned ? "Returned" : getStatus(props.returnDate)}/>
                 <S.Title>{props.title}</S.Title>
                 <S.Author>{props.author}</S.Author>
+                {!props.isReturned && getFine(props.returnDate) &&
+                    <S.FineText>You have to pay {getFine(props.returnDate)}₹ fine for overdue</S.FineText>}
                 <S.DateWrapper>
                     <S.DateConatiners>
                         Issued on {getFormattedDate(props.issuedDate)}

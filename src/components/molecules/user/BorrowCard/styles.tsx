@@ -37,3 +37,7 @@ export const DateConatiners = styled.div`
   font-size: 12px;
   color: gray;
 `
+
+export const FineText = styled.div`
+  font-size: 12px;
+  color: red;`

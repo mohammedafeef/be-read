@@ -5,7 +5,7 @@ import {getBookLikesByStudent} from "@app/services/bookLikeService";
 export const useWishList = () => {
 
     const {data} = useQuery({
-        queryKey: ['admin-requests'],
+        queryKey: ['admin-wishlist'],
         async queryFn(): Promise<LikedBook[]> {
             const likesRef = await getBookLikesByStudent(localStorage.getItem('user-auth') as string);
             let wishList: LikedBook[] = [];

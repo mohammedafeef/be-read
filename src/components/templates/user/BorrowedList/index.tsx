@@ -1,7 +1,7 @@
 import Layout from "@organisms/user/Layout";
 import * as S from "./styles";
 import {BorrowCard} from "@molecules/user/BorrowCard";
-import {useBorrow} from "@templates/admin/BorrowedList/useBorrow";
+import {useBorrow} from "@templates/user/BorrowedList/useBorrow";
 
 export const BorrowedListTemplate = () => {
     const {values, mutation} = useBorrow();
@@ -41,9 +41,9 @@ export const BorrowedListTemplate = () => {
                 </S.BorrowContainer>
                 <S.ReaderInfoContainer>
                     <S.Title>Reader Info</S.Title>
-                    <S.Count>23</S.Count>
+                    <S.Count>{values.counts?.returned}</S.Count>
                     <S.CountLabel>Books Read</S.CountLabel>
-                    <S.Count>23</S.Count>
+                    <S.Count>{values.counts?.pending}</S.Count>
                     <S.CountLabel>Books Borrowed</S.CountLabel>
                 </S.ReaderInfoContainer>
             </S.Root>

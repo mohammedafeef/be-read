@@ -1,4 +1,4 @@
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {useQuery} from "react-query";
 import {OptionsList} from "@app/types/OptionsList";
 import {getAuthors, getBooks, getGenres, getLanguages, getPublishers} from "@app/services/bookService";
@@ -13,6 +13,10 @@ export const useSearch = () => {
     const [genre, setGenre] = useState("");
     const [language, setLanguage] = useState("");
     const [keyword, setKeyword] = useState<string>(router.router.query.keyword as string || "");
+
+    useEffect(() => {
+        setKeyword(router.router.query.keyword as string);
+    }, [router.router.query.keyword]);
 
     const {data} = useQuery({
         queryKey: ['books'],
@@ -96,7 +100,7 @@ export const useSearch = () => {
         setPublisher("");
         setGenre("");
         setLanguage("");
-        setKeyword("");
+        setKeyword(router.router.query.keyword as string || "");
     }
     const handleAuthorChange = (e: any) => {
         setAuthor(e.target.value);

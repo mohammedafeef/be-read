@@ -9,21 +9,30 @@ export const useBorrow = () => {
 
     const {data} = useQuery({
         queryKey: ['admin-requests'],
-        async queryFn(): Promise<Borrow[]> {
+        async queryFn(): Promise<{ requestList: Borrow[]; counts: { pending: number; returned: number; } }> {
             const request = await getIssuedBooksByUserId(localStorage.getItem("user-auth") as string);
             const requestList: Borrow[] = [];
+            const counts = {
+                pending: 0,
+                returned: 0
+            }
             request.forEach((doc: any) => {
+                if (doc.data().isReturned) {
+                    counts.returned = counts.returned + 1;
+                } else {
+                    counts.pending = counts.pending + 1;
+                }
                 requestList.push({
                     id: doc.id,
                     ...doc.data()
                 } as Borrow)
             });
-            return requestList;
+            return {requestList, counts};
         }
     });
 
     const issuedBooks = useMemo(() => {
-        return data?.filter((request: Borrow) => {
+        return data?.requestList?.filter((request: Borrow) => {
             return !(keyword && !request.book.name.toLowerCase().includes(keyword.toLowerCase()));
 
         })
@@ -39,6 +48,7 @@ export const useBorrow = () => {
 
     return {
         values: {
+            counts: data?.counts,
             issuedBooks,
             states: {
                 status,
